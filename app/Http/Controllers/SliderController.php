@@ -35,24 +35,24 @@ class SliderController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all(); 
-        // $data = $request->validate(
-        //     [
-        //     'title' => 'required|unique:categories|max:255',
-        //     'slug' => 'required',
-        //     'description'=>'required|max:255',
+        // $data = $request->all(); 
+        $data = $request->validate(
+            [
+            'title' => 'required|unique:slider|max:255',
+ 
+            'description'=>'required|max:255',
 
-        //     'image'=> 'required|image|mines:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=2000,max_height=2000',
-        //     'status' => 'required',
-        //     ],
+            'image'=> 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=2000,max_height=2000',
+            'status' => 'required',
+            ],
 
-        //     [
-        //         'title.unique' => 'Tên danh mục đã bị trùng xin chọn tên khác',
-        //         'title.required' => 'Tên danh mục không được để trống',
-        //         'image.required' => 'Hình ảnh không được để trống',
-        //         'status.required' => 'Status không được để trống',
-        //     ]
-        // );
+            [
+                'title.unique' => 'Tên danh mục đã bị trùng xin chọn tên khác',
+                'title.required' => 'Tên danh mục không được để trống',
+                'image.required' => 'Hình ảnh không được để trống',
+                'status.required' => 'Status không được để trống',
+            ]
+        );
       
         $slider = new Slider(); 
         $slider->title = $data['title'];
@@ -94,7 +94,8 @@ class SliderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $slider = Slider::find($id);
+        return view('admin.slider.edit' , compact('slider'));
     }
 
     /**
@@ -106,7 +107,50 @@ class SliderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all(); 
+        // $data = $request->validate(
+        //     [
+        //     'title' => 'required|unique:categories|max:255',
+        //     'slug' => 'required',
+        //     'kindofslide' => 'required',
+        //     'description'=>'required|max:255',
+        //     'image'=> 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=2000,max_height=2000',
+        //     'status' => 'required',
+        //     ],
+
+        //     [
+        //         'title.unique' => 'Tên danh mục đã bị trùng xin chọn tên khác',
+        //         'title.required' => 'Tên danh mục không được để trống',
+        //         'description.required' => 'Mô tả không được để trống',
+        //         'kindofslide.required' => 'Loại slide không được để trống',
+        //         'image.required' => 'Hình ảnh không được để trống',
+        //         'status.required' => 'Status không được để trống',
+        //     ]
+        // );
+
+        $slide = Slider::find($id); 
+
+        $slide->title = $data['title'];
+        $slide->description  = $data['description'];
+        $slide->status = $data['status'];
+        $get_image = $request->image;
+        if($get_image) {
+        $path_unlink = 'uploads/slider/'.$slide->image;   // bỏ hình ảnh cũ
+        if(file_exists($path_unlink)) {
+            unlink($path_unlink);
+        }
+
+        // thêm ảnh mới
+        $path = 'uploads/slider/';
+        $get_name_image = $get_image->getClientOriginalName();
+        $name_image = current(explode('.', $get_name_image));
+        $new_image = $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
+        $get_image -> move($path, $new_image);
+        $slide->image = $new_image;
+    }
+
+        $slide->save();
+        return redirect()->back(); 
     }
 
     /**

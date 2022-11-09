@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\BlogController; 
 use App\Http\Controllers\VideoController;
+use App\Http\Controllers\AccessoriesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,5 +40,6 @@ Route::prefix('admin') -> middleware(['auth', 'isAdmin']) -> group(function() {
     Route::resource('/slider', SliderController::class);
     Route::resource('/blog', BlogController::class);
     Route::resource('/video', VideoController::class);
+    Route::resource('/accessories', AccessoriesController::class);
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
-use Illuminate\Validation\Validator;
+
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
@@ -37,24 +39,25 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all(); 
-        // $data = $request->validate(
-        //     [
-        //     'title' => 'required|unique:categories|max:255',
-        //     'slug' => 'required',
-        //     'description'=>'required|max:255',
+        // $data = $request->all(); 
+        $data = $request->validate(
+            [
+            'title' => 'required|unique:categories|max:255',
+            'slug' => 'required|unique:categories',
+            'description'=>'required|max:255',
 
-        //     'image'=> 'required|image|mines:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=2000,max_height=2000',
-        //     'status' => 'required',
-        //     ],
+            'image'=> 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=2000,max_height=2000',
+            'status' => 'required',
+            ],
 
-        //     [
-        //         'title.unique' => 'Tên danh mục đã bị trùng xin chọn tên khác',
-        //         'title.required' => 'Tên danh mục không được để trống',
-        //         'image.required' => 'Hình ảnh không được để trống',
-        //         'status.required' => 'Status không được để trống',
-        //     ]
-        // );
+            [
+                'title.unique' => 'Tên danh mục đã bị trùng xin chọn tên khác',
+                'title.required' => 'Tên danh mục không được để trống',
+                'description.required' => 'Mô tả không được để trống',
+                'image.required' => 'Hình ảnh không được để trống',
+                'status.required' => 'Status không được để trống',
+            ]
+        );
       
         $category = new Category(); 
         $category->title = $data['title'];
@@ -109,15 +112,33 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $request->all();    
+        // $data = $request->all();    
+        $data = $request->validate(
+            [
+            'title' => 'required|unique:categories|max:255',
+            'slug' => 'required|unique:categories',
+            'description'=>'required|max:255',
+            'image'=> 'required',
+            'status' => 'required',
+            ],
+
+            [
+                'title.unique' => 'Tên danh mục đã bị trùng xin chọn tên khác',
+                'title.required' => 'Tên danh mục không được để trống',
+                'image.required' => 'Hình ảnh không được để trống',
+                'status.required' => 'Status không được để trống',
+            ]
+        );
+
         $category = Category::find($id); 
+
         $category->title = $data['title'];
         $category->slug = $data['slug'];
         $category->description  = $data['description'];
         $category->status = $data['status'];
         $get_image = $request->image;
         if($get_image) {
-        $path_unlink = 'uploads/category/' .$category->image;   // bỏ hình ảnh cũ
+        $path_unlink = 'uploads/category/'.$category->image;   // bỏ hình ảnh cũ
         if(file_exists($path_unlink)) {
             unlink($path_unlink);
         }

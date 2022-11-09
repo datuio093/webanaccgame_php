@@ -59,12 +59,12 @@
               
                 
                         <td> 
-                            <form action="{{route('category.destroy',[$blg->id] )}}" method="POST">
+                            <form action="{{route('blog.destroy',[$blg->id] )}}" method="POST">
                             @method('DELETE')
                             @csrf
                             <button onclick="return confirm('Bạn Có Muốn Xóa Danh Mục Này Không ?');" class="btn btn-danger">Xóa </button>
                             </form> 
-                            <a href="{{route('category.edit', $blg->id)}}" class="btn btn-warning"> Sửa</a> </td>
+                            <a href="{{route('blog.edit', $blg->id)}}" class="btn btn-warning"> Sửa</a> </td>
                       </tr>
                     @endforeach
              

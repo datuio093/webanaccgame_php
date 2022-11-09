@@ -12,7 +12,7 @@
                     <a class="nav-link active" aria-current="page" href="{{url('/home')}}">Admin Home</a>
                   </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{{route('category.index')}}">Danh Mục Game</a>
+                <a class="nav-link active" aria-current="page" href="{{route('category.index')}}">List Game</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="{{route('slider.index')}}">Slider</a>
@@ -22,6 +22,9 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="{{route('blog.index')}}">Blog</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{route('accessories.index')}}">Accessories</a>
               </li>
 
               
