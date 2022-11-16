@@ -7,7 +7,7 @@
 <div class="row justify-content-center">
     <div class="col-md-8">
         <div class="card">
-            <div class="card-header">Cập Nhật Danh Sách Blog</div>
+            <div class="card-header">Cập Nhật Danh Sách accessories</div>
             @if ($errors->any())
             <div class="alert alert-danger">
               <ul>
@@ -27,23 +27,31 @@
                     </div>
                 @endif
 
-                <a href="{{route('blog.index')}}" class="btn btn-success"> Liệt Kê Danh Mục Blog</a>
-                <a href="{{route('blog.create')}}" class="btn btn-success"> Thêm Danh Mục Blog</a>
-                <form action="{{route('blog.update', $blog->id)}}" method="POST" enctype="multipart/form-data">
+                <a href="{{route('accessories.index')}}" class="btn btn-success"> Liệt Kê Danh Mục accessories</a>
+                <a href="{{route('accessories.create')}}" class="btn btn-success"> Thêm Danh Mục accessories</a>
+                <form action="{{route('accessories.update', $accessories->id)}}" method="POST" enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
                     <div class="form-group">
                       <label for="">Title</label>
-                      <input type="text" name="title" class="form-control" id="" aria-describedby="emailHelp" value="{{($blog->title)}}">
+                      <input type="text" name="title" class="form-control" id="" aria-describedby="emailHelp" value="{{($accessories->title)}}">
                    
                     </div>
-
+                    <div class="form-group">
+                      <label for="exampleFormControlSelect1">Thuộc Game</label>
+                      <select class="form-control" name="category_id" id="exampleFormControlSelect1">
+                    
+                        @foreach ($category as $key => $cates)
+                           <option {{ $cates->id==$accessories->category_id ? 'selected' : ' ' }}   value={{$cates->id}}> {{$cates->title}}</option>
+                        @endforeach
+                      </select>
+                   </div>
                    
                      
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Status</label>
                         <select class="form-control" name="status" id="exampleFormControlSelect1">
-                            @if ($blog->status==1)
+                            @if ($accessories->status==1)
                             <option value="1" selected>Hiển Thị</option>
                             <option value="0">Không Hiển Thị</option>
                             @else
@@ -55,26 +63,7 @@
                         </select>
                       </div>
 
-                      <div class="form-group">
-                        <label for="exampleFormControlSelect1">Kind Of Blog</label>
-                        <select class="form-control" name="kindofblog" id="exampleFormControlSelect1">
-                            @if ($blog->kind_of_blog=='huongdan')
-                            <option value="blogs">Blog</option>
-                            <option selected value="huongdan">Hưỡng Dẫn</option>
-                            <option value="aboutus">About Us</option>
-                            @elseif($blog->kind_of_blog=='blogs')
-                            <option selected value="blogs">Blog (Tin Game)</option>
-                            <option value="huongdan">Hưỡng Dẫn</option>
-                            <option value="aboutus">About Us</option>
-                            @else
-                            <option  value="blogs">Blog (Tin Game)</option>
-                            <option value="huongdan">Hưỡng Dẫn</option>
-                            <option selected value="aboutus">About Us</option>
-                            @endif
-                   
-                   
-                        </select>
-                      </div>
+                     
                   
                     <button type="submit" class="btn btn-primary">Submit</button>
                   </form>

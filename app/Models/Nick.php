@@ -5,17 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Accessories extends Model
+class Nick extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $table = 'accessories';
+    protected $table = 'nicks';
     protected $filltable = [
-        'title',  'status' , 'category_id'
+        'title', 'attribute' , 'category_id	' , 'price' , 'status' , '	description' , 'image' , 'ms'
     ];
 
     public function category(){
         return $this->belongsTo(Category::class);
     }
-    
+
 }

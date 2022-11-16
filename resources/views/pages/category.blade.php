@@ -7,9 +7,9 @@
        <div class="container">
           <div class="row">
              <div class="alert alert-info" role="alert">
-                <h2 class="alert-heading">Dịch Vụ Liên Minh Tốc Chiến</h2>
+                <h2 class="alert-heading">{{$category->title}}</h2>
                 <p></p>
-                <p><span style="color:#e74c3c"><strong>Dịch Vụ Liên Minh Tốc Chiến . </strong></span><strong>Dịch vụ bán skin và tướng giá rẻ game LIÊN MINH TỐC CHIẾN&nbsp;</strong></p>
+                <p><span style="color:#e74c3c"><strong>{{$category->description}}</strong></span></p>
                 <p></p>
              </div>
              {{-- <div class="row" style="margin-bottom: 15px">
@@ -40,13 +40,14 @@
                 <div class="col-sm-3 col-xs-6 p-5">
                    <div class="classWithPad">
                       <div class="news_image">
-                         <img style="position: absolute;max-width: 79px;height: auto;top: -5px;right: -6px;z-index: 1122;" src="img/giam.png"/>
-                         <a href="" title="Danh Mục Game Free Fire" class="">
-                         <img src="{{asset('fe/images/danhmuc.gif')}}" alt="Danh Mục Game Free Fire"></a>
+                
+                         <img style="position: absolute;max-width: 79px;height: auto;top: -5px;right: -6px;z-index: 1122;" src="{{asset('fe/images/giam.png')}}"/>
+                         <a href="{{route('danhmucgame', [$category->slug] )}}" title="Danh Mục Game Free Fire" class="">
+                         <img src="{{asset('uploads/category/'.$category->image)}}" alt="Danh Mục Game Free Fire"></a>
                       </div>
                       <div class="news_title">
                          <h2>
-                            <a href="" title="Danh Mục Game Liên Quân">Danh Mục Game Liên Quân</a>
+                            <a href="{{route('danhmucgame', [$category->slug] )}}" title="Danh Mục Game ">{{$category->title}}</a>
                          </h2>
                       </div>
                       <div class="news_description">

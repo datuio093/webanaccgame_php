@@ -39,7 +39,7 @@ class AccessoriesController extends Controller
     {
         $data = $request->validate(
             [
-            'title' => 'required|unique:accessories|max:255',
+            'title' => 'required|max:255',
            
             'category_id' => 'required',
           
@@ -48,7 +48,7 @@ class AccessoriesController extends Controller
             ],
 
             [
-                'title.unique' => 'Tên danh mục đã bị trùng xin chọn tên khác',
+          
                 'title.required' => 'Tên danh mục không được để trống',
             
                 'category_id.required' => 'category_id không được để trống',
@@ -63,7 +63,7 @@ class AccessoriesController extends Controller
         $accessories->category_id = $data['category_id'];
 
         $accessories->save();
-        return redirect()->back(); 
+        return redirect()->route('accessories.index');
     }
 
     /**
@@ -85,7 +85,9 @@ class AccessoriesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::orderBy('id','DESC')->get();
+        $accessories = Accessories::find($id);
+        return view('admin.accessories.edit' ,compact('category','accessories') );
     }
 
     /**
@@ -97,7 +99,29 @@ class AccessoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->validate(
+            [
+            'title' => 'required',
+            'category_id' => 'required',
+            'status' => 'required',
+            ],
+
+            [
+                // 'title.unique' => 'Tên danh mục đã bị trùng xin chọn tên khác',
+                'title.required' => 'Tên danh mục không được để trống',
+            
+                'category_id.required' => 'category_id không được để trống',
+                'status.required' => 'Status không được để trống',
+            ]
+        );
+        $accessories = Accessories::find($id); 
+        $accessories->title = $data['title'];
+ 
+        $accessories->status = $data['status'];
+        $accessories->category_id = $data['category_id'];
+
+        $accessories->save();
+        return redirect()->route('accessories.index');
     }
 
     /**
@@ -108,6 +132,10 @@ class AccessoriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $accessories = Accessories::find($id); 
+     
+
+        $accessories->delete();
+        return redirect()->route('accessories.index');
     }
 }

@@ -26,6 +26,9 @@
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="{{route('accessories.index')}}">Accessories</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{route('nick.index')}}">Nick</a>
+              </li>
 
               
               

@@ -112,23 +112,23 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $data = $request->all();    
-        $data = $request->validate(
-            [
-            'title' => 'required|unique:categories|max:255',
-            'slug' => 'required|unique:categories',
-            'description'=>'required|max:255',
-            'image'=> 'required',
-            'status' => 'required',
-            ],
+         $data = $request->all();    
+        // $data = $request->validate(
+        //     [
+        //     'title' => 'required|unique:categories|max:255',
+        //     'slug' => 'required|unique:categories',
+        //     'description'=>'required|max:255',
+        //     'image'=> 'required',
+        //     'status' => 'required',
+        //     ],
 
-            [
-                'title.unique' => 'Tên danh mục đã bị trùng xin chọn tên khác',
-                'title.required' => 'Tên danh mục không được để trống',
-                'image.required' => 'Hình ảnh không được để trống',
-                'status.required' => 'Status không được để trống',
-            ]
-        );
+        //     [
+        //         'title.unique' => 'Tên danh mục đã bị trùng xin chọn tên khác',
+        //         'title.required' => 'Tên danh mục không được để trống',
+        //         'image.required' => 'Hình ảnh không được để trống',
+        //         'status.required' => 'Status không được để trống',
+        //     ]
+        // );
 
         $category = Category::find($id); 
 

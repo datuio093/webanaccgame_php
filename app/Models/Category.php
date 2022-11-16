@@ -13,4 +13,12 @@ class Category extends Model
     protected $filltable = [
         'title', 'description' , 'image' , 'status' , 'orther_category'
     ];
+
+    public function accessories(){
+        return $this->belongsTo(Accessories::class);
+    }
+
+    public function nick(){
+        return $this->belongsTo(Nicks::class);
+    }
 }

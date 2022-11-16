@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Slider;
 use App\Models\Blog;
 use App\Models\Video;
+use App\Models\Nick;
 class IndexController extends Controller
 {
     public function home(){
@@ -30,10 +31,19 @@ class IndexController extends Controller
         $slider = Slider::orderBy('id','DESC')->where('status',1)->get();
         return view('pages.category', compact('slug','slider','blog_aboutus') );
     }
-    public function danh_muc_con($slug){
+    public function danh_muc_con($slug){    /// bam trang home -> danh muc con
         $blog_aboutus = Blog::where('kind_of_blog','aboutus')->get();
         $slider = Slider::orderBy('id','DESC')->where('status',1)->get();
-        return view('pages.sub_category' , compact('slug','slider','blog_aboutus') );
+        $category = Category::where('slug', $slug ) -> first();
+        return view('pages.category' , compact('slug','slider','blog_aboutus','category') );
+    }
+    public function danh_muc_game($slug){  /// bam trang danh muc con -> chi tiet acc game
+        $category = Category::where('slug',$slug )->first();
+        $nicks = Nick::where('category_id',$category->id )->where('status',1)->paginate(16) ;
+
+        $blog_aboutus = Blog::where('kind_of_blog','aboutus')->get();
+        $slider = Slider::orderBy('id','DESC')->where('status',1)->get();
+        return view('pages.sub_category' , compact('slug','slider','blog_aboutus', 'nicks','category') );
     }
 
     public function video_highlight(){

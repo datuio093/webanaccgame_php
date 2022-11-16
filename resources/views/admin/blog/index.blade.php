@@ -16,7 +16,7 @@
                     </div>
                 @endif
 
-                <a href="{{route('blog.create')}}" class="btn btn-success"> Thêm Danh Mục Game</a>
+                <a href="{{route('blog.create')}}" class="btn btn-success"> Thêm Blog</a>
                 <table class="table table-striped" id="myTable">
                     <tr>
                       <th>ID</th>
@@ -36,7 +36,7 @@
                     <tr>
                         <td>{{$key}}</td>
                         <td style="max-width: 100px">{{$blg->title}}</td>
-                        <td style="max-width: 500px">{!!$blg->content!!}</td>
+                        <td style="max-width:500px"> {!!$blg->content!!} </td>
                         <td style="max-width: 100px">{{$blg->slug}}</td>
                         <td style="max-width: 300px">{!!$blg->description!!}</td>
                         <td>

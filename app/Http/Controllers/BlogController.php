@@ -42,7 +42,8 @@ class BlogController extends Controller
             'title' => 'required|unique:blogs|max:255',
             'slug' => 'required',
             'kindofblog' => 'required',
-            'description'=>'required|max:255',
+            'description'=>'required',
+            'content'=>'required',
             'image'=> 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=2000,max_height=2000',
             'status' => 'required',
             ],
@@ -59,10 +60,10 @@ class BlogController extends Controller
       
         $blog = new Blog(); 
         $blog->title = $data['title'];
-        $blog->slug  = $data['slug'];
-        $blog->kind_of_blog  = $data['kindofblog'];
-        $blog->description  = $data['description'];
-        $blog->content  = $data['content'];
+        $blog->slug = $data['slug'];
+        $blog->kind_of_blog = $data['kindofblog'];
+        $blog->description = $data['description'];
+        $blog->content = $data['content'];
 
         $get_image = $request->image;
         $path = 'uploads/blog';
@@ -170,6 +171,14 @@ class BlogController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $blog = Blog::find($id); 
+      
+        $path_unlink = 'uploads/blog/' .$blog->image;   // bỏ hình ảnh cũ
+        if(file_exists($path_unlink)) {
+            unlink($path_unlink);
+        }
+
+        $blog->delete();
+        return redirect()->back(); 
     }
 }

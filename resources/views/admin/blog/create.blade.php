@@ -35,6 +35,25 @@
                       <input type="text" name="title" class="form-control" onkeyup="ChangeToSlug()" id="slug"  placeholder="Title">
       
                     </div>
+                    <div class="form-group">
+                      <label for="">Slug</label>
+                      <input type="text" name="slug" class="form-control" id="convert_slug" aria-describedby="emailHelp" >
+                   
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Image</label>
+                        <input type="file" class="form-control" name="image" id="" aria-describedby="emailHelp" placeholder="Image">
+                     
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">Description</label>
+                           <textarea class="form-control" name="description" id="des_blog">  </textarea> 
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">Content</label>
+                          <textarea class="form-control" name="content" id="content_blog">  </textarea> 
+                      </div>
 
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Status</label>
@@ -44,6 +63,19 @@
                    
                         </select>
                      </div>
+
+                     <div class="form-group">
+                      <label for="exampleFormControlSelect1">Kind Of Blog</label>
+                      <select class="form-control" name="kindofblog" id="exampleFormControlSelect1">
+                        
+                          <option value="blogs">Blog</option>
+                          <option  value="huongdan">Hưỡng Dẫn</option>
+                          <option value="aboutus">About Us</option>
+                     
+                 
+                 
+                      </select>
+                    </div>
                   
                     <button type="submit" class="btn btn-primary">Submit</button>
                   </form>

@@ -6,7 +6,7 @@
        <div class="row">
           <div class="col-sm-12">
              <div class="alert alert-info box-text showtext" role="alert">
-                <h1 class="alert-heading" style="color:#000">Liên quân</h1>
+                <h1 class="alert-heading" style="color:#000">{{$category->title}}</h1>
                 <p></p>
                 <table align="center" border="1" cellpadding="1" cellspacing="1" class="table table-bordered table-striped">
                    <tbody>
@@ -318,39 +318,37 @@
           
        </script>
        <div class="row row-flex  item-list">
+         @foreach($nicks as $key => $nick)
           <div class="col-sm-6 col-md-3">
              <div class="classWithPad">
                 <div class="image">
                    <a href="/acc/518480">
                       <!-- <a href="/acc/518480"> -->
-                      <img src="img/3RcdbTs582_1650188706.jpg" alt="png-image">
-                      <span class="ms">MS: 518480</span>
+                      <img src="{{asset('uploads/nicks/'.$nick->image)}}" alt="png-image">
+                      <span class="ms">MS: #{{$nick->ms}}</span>
                    </a>
                 </div>
                 <div class="description">
-                   Ngộ Không Nhóc Tì Bá Đạo IV, Ryoma...
+                  {!!$nick->description!!}
                 </div>
                 <div class="attribute_info">
                    <div class="row">
+                     @php
+                     $attribute = json_decode($nick->attribute, true); 
+                     @endphp
+                     @foreach($attribute as $attri)
                       <div class="col-xs-6 a_att">
-                         Rank: <b>Cao Thủ</b>
+                        {{   $attri }}
                       </div>
-                      <div class="col-xs-6 a_att">
-                         Tướng: <b>54</b>
-                      </div>
-                      <div class="col-xs-6 a_att">
-                         Trang Phục: <b>56</b>
-                      </div>
-                      <div class="col-xs-6 a_att">
-                         Ngọc 90: <b>Có</b>
-                      </div>
+                      @endforeach
+                  
                    </div>
                 </div>
                 <div class="a-more">
                    <div class="row">
                       <div class="col-xs-6">
                          <div class="price_item">
-                            1,300,000đ
+                           {{$nick->price}}
                          </div>
                       </div>
                       <div class="col-xs-6 ">
@@ -363,321 +361,7 @@
                 </div>
              </div>
           </div>
-          <div class="col-sm-6 col-md-3">
-             <div class="classWithPad">
-                <div class="image">
-                   <a href="/acc/518480">
-                      <!-- <a href="/acc/518480"> -->
-                      <img src="img/3RcdbTs582_1650188706.jpg" alt="png-image">
-                      <span class="ms">MS: 518480</span>
-                   </a>
-                </div>
-                <div class="description">
-                   Ngộ Không Nhóc Tì Bá Đạo IV, Ryoma...
-                </div>
-                <div class="attribute_info">
-                   <div class="row">
-                      <div class="col-xs-6 a_att">
-                         Rank: <b>Cao Thủ</b>
-                      </div>
-                      <div class="col-xs-6 a_att">
-                         Tướng: <b>54</b>
-                      </div>
-                      <div class="col-xs-6 a_att">
-                         Trang Phục: <b>56</b>
-                      </div>
-                      <div class="col-xs-6 a_att">
-                         Ngọc 90: <b>Có</b>
-                      </div>
-                   </div>
-                </div>
-                <div class="a-more">
-                   <div class="row">
-                      <div class="col-xs-6">
-                         <div class="price_item">
-                            1,300,000đ
-                         </div>
-                      </div>
-                      <div class="col-xs-6 ">
-                         <div class="view">
-                            <a href="/acc/518480">Chi tiết</a>
-                            <!-- <a href="/acc/518480">Chi tiết</a> -->
-                         </div>
-                      </div>
-                   </div>
-                </div>
-             </div>
-          </div>
-          <div class="col-sm-6 col-md-3">
-             <div class="classWithPad">
-                <div class="image">
-                   <a href="/acc/518480">
-                      <!-- <a href="/acc/518480"> -->
-                      <img src="img/3RcdbTs582_1650188706.jpg" alt="png-image">
-                      <span class="ms">MS: 518480</span>
-                   </a>
-                </div>
-                <div class="description">
-                   Ngộ Không Nhóc Tì Bá Đạo IV, Ryoma...
-                </div>
-                <div class="attribute_info">
-                   <div class="row">
-                      <div class="col-xs-6 a_att">
-                         Rank: <b>Cao Thủ</b>
-                      </div>
-                      <div class="col-xs-6 a_att">
-                         Tướng: <b>54</b>
-                      </div>
-                      <div class="col-xs-6 a_att">
-                         Trang Phục: <b>56</b>
-                      </div>
-                      <div class="col-xs-6 a_att">
-                         Ngọc 90: <b>Có</b>
-                      </div>
-                   </div>
-                </div>
-                <div class="a-more">
-                   <div class="row">
-                      <div class="col-xs-6">
-                         <div class="price_item">
-                            1,300,000đ
-                         </div>
-                      </div>
-                      <div class="col-xs-6 ">
-                         <div class="view">
-                            <a href="/acc/518480">Chi tiết</a>
-                            <!-- <a href="/acc/518480">Chi tiết</a> -->
-                         </div>
-                      </div>
-                   </div>
-                </div>
-             </div>
-          </div>
-          <div class="col-sm-6 col-md-3">
-             <div class="classWithPad">
-                <div class="image">
-                   <a href="/acc/518480">
-                      <!-- <a href="/acc/518480"> -->
-                      <img src="img/3RcdbTs582_1650188706.jpg" alt="png-image">
-                      <span class="ms">MS: 518480</span>
-                   </a>
-                </div>
-                <div class="description">
-                   Ngộ Không Nhóc Tì Bá Đạo IV, Ryoma...
-                </div>
-                <div class="attribute_info">
-                   <div class="row">
-                      <div class="col-xs-6 a_att">
-                         Rank: <b>Cao Thủ</b>
-                      </div>
-                      <div class="col-xs-6 a_att">
-                         Tướng: <b>54</b>
-                      </div>
-                      <div class="col-xs-6 a_att">
-                         Trang Phục: <b>56</b>
-                      </div>
-                      <div class="col-xs-6 a_att">
-                         Ngọc 90: <b>Có</b>
-                      </div>
-                   </div>
-                </div>
-                <div class="a-more">
-                   <div class="row">
-                      <div class="col-xs-6">
-                         <div class="price_item">
-                            1,300,000đ
-                         </div>
-                      </div>
-                      <div class="col-xs-6 ">
-                         <div class="view">
-                            <a href="/acc/518480">Chi tiết</a>
-                            <!-- <a href="/acc/518480">Chi tiết</a> -->
-                         </div>
-                      </div>
-                   </div>
-                </div>
-             </div>
-          </div>
-          <div class="col-sm-6 col-md-3">
-             <div class="classWithPad">
-                <div class="image">
-                   <a href="/acc/518480">
-                      <!-- <a href="/acc/518480"> -->
-                      <img src="img/3RcdbTs582_1650188706.jpg" alt="png-image">
-                      <span class="ms">MS: 518480</span>
-                   </a>
-                </div>
-                <div class="description">
-                   Ngộ Không Nhóc Tì Bá Đạo IV, Ryoma...
-                </div>
-                <div class="attribute_info">
-                   <div class="row">
-                      <div class="col-xs-6 a_att">
-                         Rank: <b>Cao Thủ</b>
-                      </div>
-                      <div class="col-xs-6 a_att">
-                         Tướng: <b>54</b>
-                      </div>
-                      <div class="col-xs-6 a_att">
-                         Trang Phục: <b>56</b>
-                      </div>
-                      <div class="col-xs-6 a_att">
-                         Ngọc 90: <b>Có</b>
-                      </div>
-                   </div>
-                </div>
-                <div class="a-more">
-                   <div class="row">
-                      <div class="col-xs-6">
-                         <div class="price_item">
-                            1,300,000đ
-                         </div>
-                      </div>
-                      <div class="col-xs-6 ">
-                         <div class="view">
-                            <a href="/acc/518480">Chi tiết</a>
-                            <!-- <a href="/acc/518480">Chi tiết</a> -->
-                         </div>
-                      </div>
-                   </div>
-                </div>
-             </div>
-          </div>
-          <div class="col-sm-6 col-md-3">
-             <div class="classWithPad">
-                <div class="image">
-                   <a href="/acc/518480">
-                      <!-- <a href="/acc/518480"> -->
-                      <img src="img/3RcdbTs582_1650188706.jpg" alt="png-image">
-                      <span class="ms">MS: 518480</span>
-                   </a>
-                </div>
-                <div class="description">
-                   Ngộ Không Nhóc Tì Bá Đạo IV, Ryoma...
-                </div>
-                <div class="attribute_info">
-                   <div class="row">
-                      <div class="col-xs-6 a_att">
-                         Rank: <b>Cao Thủ</b>
-                      </div>
-                      <div class="col-xs-6 a_att">
-                         Tướng: <b>54</b>
-                      </div>
-                      <div class="col-xs-6 a_att">
-                         Trang Phục: <b>56</b>
-                      </div>
-                      <div class="col-xs-6 a_att">
-                         Ngọc 90: <b>Có</b>
-                      </div>
-                   </div>
-                </div>
-                <div class="a-more">
-                   <div class="row">
-                      <div class="col-xs-6">
-                         <div class="price_item">
-                            1,300,000đ
-                         </div>
-                      </div>
-                      <div class="col-xs-6 ">
-                         <div class="view">
-                            <a href="/acc/518480">Chi tiết</a>
-                            <!-- <a href="/acc/518480">Chi tiết</a> -->
-                         </div>
-                      </div>
-                   </div>
-                </div>
-             </div>
-          </div>
-          <div class="col-sm-6 col-md-3">
-             <div class="classWithPad">
-                <div class="image">
-                   <a href="/acc/518480">
-                      <!-- <a href="/acc/518480"> -->
-                      <img src="img/3RcdbTs582_1650188706.jpg" alt="png-image">
-                      <span class="ms">MS: 518480</span>
-                   </a>
-                </div>
-                <div class="description">
-                   Ngộ Không Nhóc Tì Bá Đạo IV, Ryoma...
-                </div>
-                <div class="attribute_info">
-                   <div class="row">
-                      <div class="col-xs-6 a_att">
-                         Rank: <b>Cao Thủ</b>
-                      </div>
-                      <div class="col-xs-6 a_att">
-                         Tướng: <b>54</b>
-                      </div>
-                      <div class="col-xs-6 a_att">
-                         Trang Phục: <b>56</b>
-                      </div>
-                      <div class="col-xs-6 a_att">
-                         Ngọc 90: <b>Có</b>
-                      </div>
-                   </div>
-                </div>
-                <div class="a-more">
-                   <div class="row">
-                      <div class="col-xs-6">
-                         <div class="price_item">
-                            1,300,000đ
-                         </div>
-                      </div>
-                      <div class="col-xs-6 ">
-                         <div class="view">
-                            <a href="/acc/518480">Chi tiết</a>
-                            <!-- <a href="/acc/518480">Chi tiết</a> -->
-                         </div>
-                      </div>
-                   </div>
-                </div>
-             </div>
-          </div>
-          <div class="col-sm-6 col-md-3">
-             <div class="classWithPad">
-                <div class="image">
-                   <a href="/acc/518480">
-                      <!-- <a href="/acc/518480"> -->
-                      <img src="img/3RcdbTs582_1650188706.jpg" alt="png-image">
-                      <span class="ms">MS: 518480</span>
-                   </a>
-                </div>
-                <div class="description">
-                   Ngộ Không Nhóc Tì Bá Đạo IV, Ryoma...
-                </div>
-                <div class="attribute_info">
-                   <div class="row">
-                      <div class="col-xs-6 a_att">
-                         Rank: <b>Cao Thủ</b>
-                      </div>
-                      <div class="col-xs-6 a_att">
-                         Tướng: <b>54</b>
-                      </div>
-                      <div class="col-xs-6 a_att">
-                         Trang Phục: <b>56</b>
-                      </div>
-                      <div class="col-xs-6 a_att">
-                         Ngọc 90: <b>Có</b>
-                      </div>
-                   </div>
-                </div>
-                <div class="a-more">
-                   <div class="row">
-                      <div class="col-xs-6">
-                         <div class="price_item">
-                            1,300,000đ
-                         </div>
-                      </div>
-                      <div class="col-xs-6 ">
-                         <div class="view">
-                            <a href="/acc/518480">Chi tiết</a>
-                            <!-- <a href="/acc/518480">Chi tiết</a> -->
-                         </div>
-                      </div>
-                   </div>
-                </div>
-             </div>
-          </div>
+        @endforeach
        </div>
        <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">
           <ul class="pagination pagination-sm">
