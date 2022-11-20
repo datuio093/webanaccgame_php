@@ -322,7 +322,7 @@
           <div class="col-sm-6 col-md-3">
              <div class="classWithPad">
                 <div class="image">
-                   <a href="/acc/518480">
+                   <a href="{{route('accgame',[$nick->ms])}}">
                       <!-- <a href="/acc/518480"> -->
                       <img src="{{asset('uploads/nicks/'.$nick->image)}}" alt="png-image">
                       <span class="ms">MS: #{{$nick->ms}}</span>
@@ -338,7 +338,7 @@
                      @endphp
                      @foreach($attribute as $attri)
                       <div class="col-xs-6 a_att">
-                        {{   $attri }}
+                        {{ $attri }}
                       </div>
                       @endforeach
                   
@@ -348,7 +348,7 @@
                    <div class="row">
                       <div class="col-xs-6">
                          <div class="price_item">
-                           {{$nick->price}}
+                           {{number_format($nick->price,0,',','.')}}đ
                          </div>
                       </div>
                       <div class="col-xs-6 ">

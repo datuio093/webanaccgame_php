@@ -5,7 +5,7 @@
 @endsection
 
 <div class="row justify-content-center ">
-    <div class="col-md-10">
+    <div class="col-md-11">
         <div class="card">
             <div class="card-header">Liệt Kê Danh Sách Game</div>
        

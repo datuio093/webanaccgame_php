@@ -5,7 +5,7 @@
 @endsection
 
 <div class="row justify-content-center ">
-    <div class="col-md-8">
+    <div class="col-md-10">
         <div class="card">
             <div class="card-header">Liệt Kê Danh Sách Game</div>
        
@@ -20,6 +20,7 @@
                 <table class="table table-striped" id="myTable">
                     <tr>
                       <th>ID</th>
+                      <th>Thư Viện Ảnh</th>
                       <th>Tên Nick</th>
                       <th>Mã Số</th>
                       <th>Mô Tả</th>
@@ -34,9 +35,10 @@
                     @foreach ($nicks as $key => $blg)
                     <tr>
                         <td>{{$key}}</td>
+                        <td>  <a href="{{route('gallery.edit', [$blg->id])}}" class="btn btn-success btn-sm">Thêm Thư Viện Ảnh </a> </td>
                         <td style="max-width: 100px">{{$blg->title}}</td>
                         <td style="max-width: 100px">{{$blg->ms}}</td>
-                        <td style="max-width: 100px">{!!$blg->description!!}</td>
+                        <td style="max-width: 400px">{!!$blg->description!!}</td>
 
   
             
@@ -51,7 +53,7 @@
                 
                         <td> <img height="150px" width="150px" src="{{asset('uploads/nicks/'.$blg->image)}}" alt=""> </td>
                         <td> {{$blg->category->title}} </td>
-                        <td>
+                        <td style="width:100px">
                             @php
                             $attribute = json_decode($blg->attribute, true); 
                             @endphp

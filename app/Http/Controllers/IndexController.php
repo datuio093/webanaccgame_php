@@ -37,13 +37,26 @@ class IndexController extends Controller
         $category = Category::where('slug', $slug ) -> first();
         return view('pages.category' , compact('slug','slider','blog_aboutus','category') );
     }
+    
     public function danh_muc_game($slug){  /// bam trang danh muc con -> chi tiet acc game
         $category = Category::where('slug',$slug )->first();
         $nicks = Nick::where('category_id',$category->id )->where('status',1)->paginate(16) ;
-
+        
         $blog_aboutus = Blog::where('kind_of_blog','aboutus')->get();
         $slider = Slider::orderBy('id','DESC')->where('status',1)->get();
         return view('pages.sub_category' , compact('slug','slider','blog_aboutus', 'nicks','category') );
+    }
+
+    public function accgame($ms){  /// bam trang danh muc con -> chi tiet acc game
+
+      
+
+         $nicks = Nick::where('ms',$ms )->first();
+         $category = Category::where('id',$nicks->category_id)->first();
+
+        $blog_aboutus = Blog::where('kind_of_blog','aboutus')->get();
+        $slider = Slider::orderBy('id','DESC')->where('status',1)->get();
+        return view('pages.detailaccgame' , compact('slider','blog_aboutus', 'nicks','category') );
     }
 
     public function video_highlight(){

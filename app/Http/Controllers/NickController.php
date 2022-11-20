@@ -160,7 +160,7 @@ class NickController extends Controller
       
         $nicks = Nick::find($id); 
         $nicks->title = $data['title'];
-        $nicks->ms = random_int( 100000 , 999999);
+        $nicks->ms =  $nicks->ms;
         // $nicks->attribute = json_encode($attribute, JSON_UNESCAPED_UNICODE); 
         $nicks->status = $data['status'];
         $nicks->description = $data['description'];
