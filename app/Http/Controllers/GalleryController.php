@@ -80,7 +80,11 @@ class GalleryController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.gallery.index');
+     
+        $nick = Nick::find($id);
+
+        $gallery = Gallery::where('nick_id',$id)->get();
+        return view('admin.gallery.index',compact('gallery','nick'));
     }
 
     /**
@@ -103,6 +107,13 @@ class GalleryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $gallery = Gallery::find($id);
+        $path = 'uploads/gallery'.$gallery->image;
+        if(file_exists($path)){
+            unlink($path);
+        }
+
+        $gallery->delete();
+        return redirect()->back();
     }
 }

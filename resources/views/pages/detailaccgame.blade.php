@@ -2,11 +2,11 @@
 @section('content')
 
 
-<div class="c-content-box c-size-lg c-overflow-hide c-bg-white">
+<div class="c-content-box c-size-lg c-overflow-hide c-bg-white" style="margin-top: 150px">
     <div class="container">
        <nav aria-label="breadcrumb" style="display:none">
           <ol class="breadcrumb">
-             <li class="breadcrumb-item"><a href="/" title="Trang chủ">Trang ch 1ủ</a></li>
+             <li class="breadcrumb-item"><a href="/" title="Trang chủ">Trang chủ</a></li>
              <li class="breadcrumb-item"><a href="{{route('danhmuccon', [$category->slug] )}}" title="Liên quân">{{$category->title}}</a></li>
              <li class="breadcrumb-item active" aria-current="page">{{$nicks->ms}}</li>
           </ol>
@@ -61,10 +61,10 @@
              <div class="c-product-meta">
                 <div class="c-product-price c-theme-font" style="float: none;text-align: center">
                    <div class="position0">
-                      5,999,994 CARD
+                     {{number_format($nicks->price*1.3,0,',','.')}} CARD
                    </div>
                    <div class="position1">
-                      4,200,000 ATM
+                     {{number_format($nicks->price,0,',','.')}} ATM
                    </div>
                 </div>
                 <div style="display: none">
@@ -79,8 +79,8 @@
                    <div class="c-content-title-1">
                       <button style="margin-bottom: 10px" type="button" class="btn c-btn btn-lg c-theme-btn c-font-uppercase c-font-bold c-btn-square m-t-20 load-modal" rel="/buyacc/518323">Mua ngay</button>
                       <button  style="margin-bottom: 10px" type="button" class="btn c-btn btn-lg btn-danger c-font-uppercase c-font-bold c-btn-square m-t-20 load-modal" rel="/hire-purchase/518323">Trả góp</button>
-                      <a type="button" class="btn c-btn btn-lg c-bg-green-4 c-font-white c-font-uppercase c-font-bold c-btn-square m-t-20" href="/recharge">ATM - Ví điện tử</a>
-                      <a class="btn c-btn btn-lg c-bg-green-4 c-font-white c-font-uppercase c-font-bold c-btn-square m-t-20" href="/nap-the">Nạp thẻ cào</a>
+                      <a type="button" class="btn c-btn btn-lg c-bg-green-4 c-font-white c-font-uppercase c-font-bold c-btn-square m-t-20" href="{{route('muathe')}}">ATM - Ví điện tử</a>
+                      <a class="btn c-btn btn-lg c-bg-green-4 c-font-white c-font-uppercase c-font-bold c-btn-square m-t-20" href="{{route('napthe')}}">Nạp thẻ cào</a>
                    </div>
                 </div>
              </div>
@@ -110,34 +110,35 @@
        </div>
     </div>
     <div class="container m-t-20 content_post">
+      @foreach($gallery as $gal)
        <p>
-          <a rel="gallery1" data-fancybox="images" href="img/1.jpg">
-          <img class="img-responsive img-thumbnail" src="img/1.jpg" alt="png-image">
+          <a rel="gallery1" data-fancybox="images" href="{{asset('uploads/gallery/'.$gal->image)}}">
+          <img class="img-responsive img-thumbnail" src="{{asset('uploads/gallery/'.$gal->image)}}" alt="png-image">
           </a>
        </p>
-       <p>
-          <a rel="gallery1" data-fancybox="images" href="img/2.jpg">
-          <img class="img-responsive img-thumbnail" src="img/2.jpg" alt="png-image">
-          </a>
-       </p>
-       <p>
-          <a rel="gallery1" data-fancybox="images" href="img/3.jpg">
-          <img class="img-responsive img-thumbnail" src="img/3.jpg" alt="png-image">
-          </a>
-       </p>
-       <p>
-          <a rel="gallery1" data-fancybox="images" href="img/4.jpg">
-          <img class="img-responsive img-thumbnail" src="img/4.jpg" alt="png-image">
-          </a>
-       </p>
-       <p>
-          <a rel="gallery1" data-fancybox="images" href="img/5.jpg">
-          <img class="img-responsive img-thumbnail" src="img/5.jpg" alt="png-image">
-          </a>
-       </p>
+       @endforeach
+   
        <div class="buy-footer" style="text-align: center">
-          <button type="button" class="btn c-btn btn-lg c-theme-btn c-font-uppercase c-font-bold c-btn-square m-t-20 load-modal" rel="/buyacc/518323">Mua ngay</button>
+
+
+         @guest
+         @else
+         <form onsubmit="return confirm('Bạn Có Chắc Chắn Muốn Mua ?');" action="{{route('buy.update', $nicks->id)}}" method="POST" enctype="multipart/form-data">
+            @method('PUT')
+            @csrf
+
+         
+            <div hidden class="form-group">
+        
+              <input hidden type="number" name="price" class="form-control" value="{{Auth::user()->id}}" >
+
+            </div>
+            {{-- type="submit" --}}
+            <button class="btn c-btn btn-lg c-theme-btn c-font-uppercase c-font-bold c-btn-square m-t-20 " type="submit"     >Mua ngay</button>
+          </form>
+          @endguest
        </div>
+       
     </div>
     <div class="container m-t-20 ">
        <div class="game-item-view" style="margin-top: 40px">
@@ -146,350 +147,52 @@
              <div class="c-line-center c-theme-bg"></div>
           </div>
           <div class="row row-flex  item-list">
+
+            @foreach($nicks_dt as $key => $nick_dt)
              <div class="col-sm-6 col-md-3">
                 <div class="classWithPad">
                    <div class="image">
-                      <a href="/acc/443449">
-                       <img src="img/3RcdbTs582_1650188706.jpg" alt="png-image">
-                      <span class="ms">MS: 518480</span>
+                      <a href="{{route('accgame',[$nick_dt->ms])}}">
+                       <img src="{{asset('uploads/nicks/'.$nick_dt->image)}}" alt="png-image">
+                      <span class="ms">{{$nick_dt->ms}}</span>
                       </a>
                    </div>
                    <div class="description">
-                      Nakroth Siêu Việt, Slimz Thỏ Ngọc
+                     {!!$nick_dt->description!!}
                    </div>
+            
                    <div class="attribute_info">
                       <div class="row">
+                        @php
+                      $attribute = json_decode($nick_dt->attribute, true); 
+                      @endphp
+                      @foreach($attribute as $attri3)
                          <div class="col-xs-6 a_att">
-                            Rank: <b>Vàng</b>
+                        <p>  {{$attri3}} </p>   
                          </div>
-                         <div class="col-xs-6 a_att">
-                            Tướng: <b>30</b>
-                         </div>
-                         <div class="col-xs-6 a_att">
-                            Trang Phục: <b>7</b>
-                         </div>
-                         <div class="col-xs-6 a_att">
-                            Ngọc 90: <b>Có</b>
-                         </div>
+                     @endforeach
+                       
                       </div>
                    </div>
                    <div class="a-more">
                       <div class="row">
                          <div class="col-xs-6">
                             <div class="price_item">
-                               180,000đ
+                              {{number_format($nick_dt->price,0,',','.')}} đ
                             </div>
                          </div>
+                     
+                         
                          <div class="col-xs-6 ">
                             <div class="view">
-                               <a href="/acc/443449">Chi tiết</a>
+                               <a href="{{route('accgame',[$nick_dt->ms])}}">Chi tiết</a>
                             </div>
                          </div>
                       </div>
                    </div>
                 </div>
              </div>
-             <div class="col-sm-6 col-md-3">
-                <div class="classWithPad">
-                   <div class="image">
-                      <a href="/acc/443449">
-                       <img src="img/3RcdbTs582_1650188706.jpg" alt="png-image">
-                      <span class="ms">MS: 518480</span>
-                      </a>
-                   </div>
-                   <div class="description">
-                      Nakroth Siêu Việt, Slimz Thỏ Ngọc
-                   </div>
-                   <div class="attribute_info">
-                      <div class="row">
-                         <div class="col-xs-6 a_att">
-                            Rank: <b>Vàng</b>
-                         </div>
-                         <div class="col-xs-6 a_att">
-                            Tướng: <b>30</b>
-                         </div>
-                         <div class="col-xs-6 a_att">
-                            Trang Phục: <b>7</b>
-                         </div>
-                         <div class="col-xs-6 a_att">
-                            Ngọc 90: <b>Có</b>
-                         </div>
-                      </div>
-                   </div>
-                   <div class="a-more">
-                      <div class="row">
-                         <div class="col-xs-6">
-                            <div class="price_item">
-                               180,000đ
-                            </div>
-                         </div>
-                         <div class="col-xs-6 ">
-                            <div class="view">
-                               <a href="/acc/443449">Chi tiết</a>
-                            </div>
-                         </div>
-                      </div>
-                   </div>
-                </div>
-             </div>
-             <div class="col-sm-6 col-md-3">
-                <div class="classWithPad">
-                   <div class="image">
-                      <a href="/acc/443449">
-                       <img src="img/3RcdbTs582_1650188706.jpg" alt="png-image">
-                      <span class="ms">MS: 518480</span>
-                      </a>
-                   </div>
-                   <div class="description">
-                      Nakroth Siêu Việt, Slimz Thỏ Ngọc
-                   </div>
-                   <div class="attribute_info">
-                      <div class="row">
-                         <div class="col-xs-6 a_att">
-                            Rank: <b>Vàng</b>
-                         </div>
-                         <div class="col-xs-6 a_att">
-                            Tướng: <b>30</b>
-                         </div>
-                         <div class="col-xs-6 a_att">
-                            Trang Phục: <b>7</b>
-                         </div>
-                         <div class="col-xs-6 a_att">
-                            Ngọc 90: <b>Có</b>
-                         </div>
-                      </div>
-                   </div>
-                   <div class="a-more">
-                      <div class="row">
-                         <div class="col-xs-6">
-                            <div class="price_item">
-                               180,000đ
-                            </div>
-                         </div>
-                         <div class="col-xs-6 ">
-                            <div class="view">
-                               <a href="/acc/443449">Chi tiết</a>
-                            </div>
-                         </div>
-                      </div>
-                   </div>
-                </div>
-             </div>
-             <div class="col-sm-6 col-md-3">
-                <div class="classWithPad">
-                   <div class="image">
-                      <a href="/acc/443449">
-                       <img src="img/3RcdbTs582_1650188706.jpg" alt="png-image">
-                      <span class="ms">MS: 518480</span>
-                      </a>
-                   </div>
-                   <div class="description">
-                      Nakroth Siêu Việt, Slimz Thỏ Ngọc
-                   </div>
-                   <div class="attribute_info">
-                      <div class="row">
-                         <div class="col-xs-6 a_att">
-                            Rank: <b>Vàng</b>
-                         </div>
-                         <div class="col-xs-6 a_att">
-                            Tướng: <b>30</b>
-                         </div>
-                         <div class="col-xs-6 a_att">
-                            Trang Phục: <b>7</b>
-                         </div>
-                         <div class="col-xs-6 a_att">
-                            Ngọc 90: <b>Có</b>
-                         </div>
-                      </div>
-                   </div>
-                   <div class="a-more">
-                      <div class="row">
-                         <div class="col-xs-6">
-                            <div class="price_item">
-                               180,000đ
-                            </div>
-                         </div>
-                         <div class="col-xs-6 ">
-                            <div class="view">
-                               <a href="/acc/443449">Chi tiết</a>
-                            </div>
-                         </div>
-                      </div>
-                   </div>
-                </div>
-             </div>
-             <div class="col-sm-6 col-md-3">
-                <div class="classWithPad">
-                   <div class="image">
-                      <a href="/acc/443449">
-                       <img src="img/3RcdbTs582_1650188706.jpg" alt="png-image">
-                      <span class="ms">MS: 518480</span>
-                      </a>
-                   </div>
-                   <div class="description">
-                      Nakroth Siêu Việt, Slimz Thỏ Ngọc
-                   </div>
-                   <div class="attribute_info">
-                      <div class="row">
-                         <div class="col-xs-6 a_att">
-                            Rank: <b>Vàng</b>
-                         </div>
-                         <div class="col-xs-6 a_att">
-                            Tướng: <b>30</b>
-                         </div>
-                         <div class="col-xs-6 a_att">
-                            Trang Phục: <b>7</b>
-                         </div>
-                         <div class="col-xs-6 a_att">
-                            Ngọc 90: <b>Có</b>
-                         </div>
-                      </div>
-                   </div>
-                   <div class="a-more">
-                      <div class="row">
-                         <div class="col-xs-6">
-                            <div class="price_item">
-                               180,000đ
-                            </div>
-                         </div>
-                         <div class="col-xs-6 ">
-                            <div class="view">
-                               <a href="/acc/443449">Chi tiết</a>
-                            </div>
-                         </div>
-                      </div>
-                   </div>
-                </div>
-             </div>
-             <div class="col-sm-6 col-md-3">
-                <div class="classWithPad">
-                   <div class="image">
-                      <a href="/acc/443449">
-                       <img src="img/3RcdbTs582_1650188706.jpg" alt="png-image">
-                      <span class="ms">MS: 518480</span>
-                      </a>
-                   </div>
-                   <div class="description">
-                      Nakroth Siêu Việt, Slimz Thỏ Ngọc
-                   </div>
-                   <div class="attribute_info">
-                      <div class="row">
-                         <div class="col-xs-6 a_att">
-                            Rank: <b>Vàng</b>
-                         </div>
-                         <div class="col-xs-6 a_att">
-                            Tướng: <b>30</b>
-                         </div>
-                         <div class="col-xs-6 a_att">
-                            Trang Phục: <b>7</b>
-                         </div>
-                         <div class="col-xs-6 a_att">
-                            Ngọc 90: <b>Có</b>
-                         </div>
-                      </div>
-                   </div>
-                   <div class="a-more">
-                      <div class="row">
-                         <div class="col-xs-6">
-                            <div class="price_item">
-                               180,000đ
-                            </div>
-                         </div>
-                         <div class="col-xs-6 ">
-                            <div class="view">
-                               <a href="/acc/443449">Chi tiết</a>
-                            </div>
-                         </div>
-                      </div>
-                   </div>
-                </div>
-             </div>
-             <div class="col-sm-6 col-md-3">
-                <div class="classWithPad">
-                   <div class="image">
-                      <a href="/acc/443449">
-                       <img src="img/3RcdbTs582_1650188706.jpg" alt="png-image">
-                      <span class="ms">MS: 518480</span>
-                      </a>
-                   </div>
-                   <div class="description">
-                      Nakroth Siêu Việt, Slimz Thỏ Ngọc
-                   </div>
-                   <div class="attribute_info">
-                      <div class="row">
-                         <div class="col-xs-6 a_att">
-                            Rank: <b>Vàng</b>
-                         </div>
-                         <div class="col-xs-6 a_att">
-                            Tướng: <b>30</b>
-                         </div>
-                         <div class="col-xs-6 a_att">
-                            Trang Phục: <b>7</b>
-                         </div>
-                         <div class="col-xs-6 a_att">
-                            Ngọc 90: <b>Có</b>
-                         </div>
-                      </div>
-                   </div>
-                   <div class="a-more">
-                      <div class="row">
-                         <div class="col-xs-6">
-                            <div class="price_item">
-                               180,000đ
-                            </div>
-                         </div>
-                         <div class="col-xs-6 ">
-                            <div class="view">
-                               <a href="/acc/443449">Chi tiết</a>
-                            </div>
-                         </div>
-                      </div>
-                   </div>
-                </div>
-             </div>
-             <div class="col-sm-6 col-md-3">
-                <div class="classWithPad">
-                   <div class="image">
-                      <a href="/acc/443449">
-                       <img src="img/3RcdbTs582_1650188706.jpg" alt="png-image">
-                      <span class="ms">MS: 518480</span>
-                      </a>
-                   </div>
-                   <div class="description">
-                      Nakroth Siêu Việt, Slimz Thỏ Ngọc
-                   </div>
-                   <div class="attribute_info">
-                      <div class="row">
-                         <div class="col-xs-6 a_att">
-                            Rank: <b>Vàng</b>
-                         </div>
-                         <div class="col-xs-6 a_att">
-                            Tướng: <b>30</b>
-                         </div>
-                         <div class="col-xs-6 a_att">
-                            Trang Phục: <b>7</b>
-                         </div>
-                         <div class="col-xs-6 a_att">
-                            Ngọc 90: <b>Có</b>
-                         </div>
-                      </div>
-                   </div>
-                   <div class="a-more">
-                      <div class="row">
-                         <div class="col-xs-6">
-                            <div class="price_item">
-                               180,000đ
-                            </div>
-                         </div>
-                         <div class="col-xs-6 ">
-                            <div class="view">
-                               <a href="/acc/443449">Chi tiết</a>
-                            </div>
-                         </div>
-                      </div>
-                   </div>
-                </div>
-             </div>
+            @endforeach
              
            
           </div>

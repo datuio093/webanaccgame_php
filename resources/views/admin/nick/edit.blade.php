@@ -39,11 +39,25 @@
                    
                     </div>
 
+                    <div class="form-group">
+                      <label for="">Tài Khoản</label>
+                      <input type="text" name="taikhoan" class="form-control" value="{{($nick->taikhoan)}}">
+      
+                    </div>
+
+                    <div class="form-group">
+                      <label for="">Mật Khẩu</label>
+                      <input type="text" name="matkhau" class="form-control" value="{{Crypt::decryptString($nick->matkhau)}}">
+      
+                    </div>
+
                    <div class="form-group">
                       <label for="">Price</label>
                       <input type="number" name="price" class="form-control" value="{{($nick->price)}}" >
     
                     </div>
+
+             
                     
                     <div class="form-group">
                       <label for="exampleInputPassword1">Description</label>

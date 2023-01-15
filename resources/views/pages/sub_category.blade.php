@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
 
-<div class="c-layout-page">
+<div class="c-layout-page" style="margin-top: 150px">
     <div class="container">
        <div class="row">
           <div class="col-sm-12">
@@ -46,7 +46,7 @@
                       <input type="text" class="form-control c-square" value="" placeholder="Tìm kiếm" name="find">
                    </div>
                 </div>
-                <div class="col-md-3 col-sm-4 p-5 field-search">
+                {{-- <div class="col-md-3 col-sm-4 p-5 field-search">
                    <div class="input-group c-square">
                       <span class="input-group-addon">Mã số</span>
                       <input type="text" class="form-control c-square" value="" placeholder="Mã số" name="id">
@@ -123,11 +123,11 @@
                          <option value="1178">Có</option>
                       </select>
                    </div>
-                </div>
+                </div>--}}
                 <div class="col-md-3 col-sm-4 p-5 no-radius">
                    <button type="submit" class="btn c-square c-theme c-btn-green">Tìm kiếm</button>
                    <a class="btn c-square m-l-0 btn-danger" href="https://nick.vn/garena/lien-quan">Tất cả</a>
-                </div>
+                </div> 
              </form>
           </div>
        </div>
@@ -353,7 +353,7 @@
                       </div>
                       <div class="col-xs-6 ">
                          <div class="view">
-                            <a href="/acc/518480">Chi tiết</a>
+                            <a href="{{route('accgame',[$nick->ms])}}">Chi tiết</a>
                             <!-- <a href="/acc/518480">Chi tiết</a> -->
                          </div>
                       </div>
@@ -362,8 +362,10 @@
              </div>
           </div>
         @endforeach
+   
        </div>
-       <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">
+       {{$nicks->links('pagination::bootstrap-4')}}
+       {{-- <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">
           <ul class="pagination pagination-sm">
              <li class="page-item disabled"><span class="page-link">«</span></li>
              <li class="page-item active"><span class="page-link">1</span></li>
@@ -377,7 +379,7 @@
        <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">
           <input style="padding: 5px" type="number" min="1" id="page">
           <input style="padding: 5px" type="button" id="search" value="Chuyển trang">
-       </div>
+       </div> --}}
        <script type="text/javascript">
           $('#search').click(function(){
               var page = $('a[rel=next]').parent().prev().find('.page-link').text();

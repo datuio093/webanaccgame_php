@@ -42,7 +42,7 @@ class CategoryController extends Controller
         // $data = $request->all(); 
         $data = $request->validate(
             [
-            'title' => 'required|unique:categories|max:255',
+            'title' => 'required|unique:categories,title|max:255',
             'slug' => 'required|unique:categories',
             'description'=>'required|max:255',
 

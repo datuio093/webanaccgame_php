@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Blog;
+use Illuminate\Support\Facades\Auth;
 class BlogController extends Controller
 {
     /**
@@ -113,28 +114,30 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $request->all(); 
-        // $data = $request->validate(
-        //     [
-        //     'title' => 'required|unique:categories|max:255',
-        //     'slug' => 'required',
-        //     'kindofblog' => 'required',
-        //     'description'=>'required|max:255',
-        //     'image'=> 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=2000,max_height=2000',
-        //     'status' => 'required',
-        //     ],
-
-        //     [
-        //         'title.unique' => 'Tên danh mục đã bị trùng xin chọn tên khác',
-        //         'title.required' => 'Tên danh mục không được để trống',
-        //         'description.required' => 'Mô tả không được để trống',
-        //         'kindofblog.required' => 'Loại Blog không được để trống',
-        //         'image.required' => 'Hình ảnh không được để trống',
-        //         'status.required' => 'Status không được để trống',
-        //     ]
-        // );
-
         $blog = Blog::find($id); 
+        // $data = $request->all(); 
+        $data = $request->validate(
+            [
+            'title' => 'required|unique:blogs',
+            'slug' => 'required',
+            'kindofblog' => 'required',
+            'description'=>'required',
+            'image'=> 'image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=2000,max_height=2000',
+            'status' => 'required',
+            'content' => 'required',
+            ],
+
+            [
+                'title.unique' => 'Tên danh mục đã bị trùng xin chọn tên khác',
+                'title.required' => 'Tên danh mục không được để trống',
+                'description.required' => 'Mô tả không được để trống',
+                'kindofblog.required' => 'Loại Blog không được để trống',
+
+                'status.required' => 'Status không được để trống',
+            ]
+        );
+
+    
 
         $blog->title = $data['title'];
         $blog->slug = $data['slug'];

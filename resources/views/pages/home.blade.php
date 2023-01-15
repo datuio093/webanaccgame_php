@@ -1,8 +1,9 @@
 @extends('layout')
+@extends('slider')
 @section('content')
 
 <div class="c-content-box c-size-md c-bg-white">
-            <div class="container">
+            <div class="container" style="margin-top: 50px">
                <!-- Begin: Testimonals 1 component -->
                <div class="c-content-client-logos-slider-1  c-bordered" data-slider="owl">
                   <!-- Begin: Title 1 component -->
@@ -10,9 +11,18 @@
                      <h3 class="c-center c-font-uppercase c-font-bold">Dịch vụ nổi bật</h3>
                      <div class="c-line-center c-theme-bg"></div>
                   </div>
-                  <div class="owl-carousel owl-theme c-theme owl-bordered1 c-owl-nav-center" data-items="6" data-desktop-items="4" data-desktop-small-items="3" data-tablet-items="3" data-mobile-items="2" data-slide-speed="5000" data-rtl="false">
+                  <div  class="owl-carousel owl-theme c-theme owl-bordered1 c-owl-nav-center" data-items="6" data-desktop-items="4" data-desktop-small-items="3" data-tablet-items="3" data-mobile-items="2" data-slide-speed="5000" data-rtl="false">
+                     <div class="item" >
+                        <a  href="{{route('profile')}}" ><img  src="{{asset('fe/images/taikhoan.jpg')}}" alt="Trang Chủ"/></a>
+                     </div>
                      <div class="item">
-                        <a href="{{route('dichvu')}}" ><img src="{{asset('fe/images/vHPm7XyQah_1623147701.jpg')}}" alt="Trang cá nhân nickvn"/></a>
+                        <a href="{{route('trangchu')}}" ><img  src="{{asset('fe/images/vHPm7XyQah_1623147701.jpg')}}" alt="Trang Chủ"/></a>
+                     </div>
+                     <div class="item">
+                        <a href="{{route('trangchu')}}" ><img  src="{{asset('fe/images/muathe.jpg')}}" alt="Trang Chủ"/></a>
+                     </div>
+                     <div class="item">
+                        <a href="{{route('napthe')}}" ><img  src="{{asset('fe/images/napthe.jpg')}}" alt="Trang Chủ"/></a>
                      </div>
                    
                   </div>
@@ -34,6 +44,7 @@
                   </div>
                   <div class="row row-flex-safari game-list">
                      @foreach($category as $key => $cate)
+              
                      <div class="col-sm-3 col-xs-6 p-5">
                         <div class="classWithPad">
                            <div class="news_image">
@@ -46,12 +57,12 @@
                                  <a href="{{route('danhmuccon', [$cate->slug])}}" title="{{$cate->title}}">{{$cate->title}}</a>
                               </h2>
                            </div>
-                           <div class="news_description">
+                           {{-- <div class="news_description">
                               <p>
-                                 Số tài khoản: 23,763
+                                 Số tài khoản:  
                               </p>
                          
-                           </div>
+                           </div> --}}
                            <div class="a-more">
                               <div class="row">
                                  <div class="col-xs-12">

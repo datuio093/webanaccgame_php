@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
 
-<div class="c-layout-page">
+<div class="c-layout-page" style="margin-top: 150px">
     <div class="c-layout-breadcrumbs-1 c-fonts-uppercase c-fonts-bold c-bordered c-bordered-both">
        <div class="container">
           <div class="c-page-title c-pull-left">
@@ -20,7 +20,7 @@
     </div>
     <div class="c-content-box c-size-md">
        <div class="container">
-          <form class="form-horizontal form-find m-b-20" role="form" method="get" data-hs-cf-bound="true">
+          {{-- <form class="form-horizontal form-find m-b-20" role="form" method="get" data-hs-cf-bound="true">
              <div class="row">
                 <div class="col-md-4">
                    <input type="text" class="form-control c-square c-theme" name="key" autocomplete="off" autofocus="" placeholder="Nhập từ khóa..." value="" style="width: 100%">
@@ -30,7 +30,7 @@
                    <a class="btn c-btn-square m-b-10 btn-danger" href="https://nick.vn/blog">Tất cả</a>
                 </div>
              </div>
-          </form>
+          </form> --}}
           <div class="row">
              <div class="col-md-9">
                 <div class="art-list">

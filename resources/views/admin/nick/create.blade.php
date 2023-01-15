@@ -36,6 +36,18 @@
       
                     </div>
 
+                    <div class="form-group">
+                      <label for="">Tài Khoản</label>
+                      <input type="text" name="taikhoan" class="form-control" placeholder="Tài Khoản">
+      
+                    </div>
+
+                    <div class="form-group">
+                      <label for="">Mật Khẩu</label>
+                      <input type="text" name="matkhau" class="form-control" placeholder="Mật Khẩu">
+      
+                    </div>
+
                     {{-- <div class="form-group">
                       <label for="">Mã Số</label>
                       <input type="text" name="maso" class="form-control" placeholder="Mã Số">

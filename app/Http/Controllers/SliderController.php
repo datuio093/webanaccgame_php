@@ -107,26 +107,26 @@ class SliderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $request->all(); 
-        // $data = $request->validate(
-        //     [
-        //     'title' => 'required|unique:categories|max:255',
-        //     'slug' => 'required',
-        //     'kindofslide' => 'required',
-        //     'description'=>'required|max:255',
-        //     'image'=> 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=2000,max_height=2000',
-        //     'status' => 'required',
-        //     ],
+        // $data = $request->all(); 
+        $data = $request->validate(
+            [
+            'title' => 'required|unique:slider|max:255',
 
-        //     [
-        //         'title.unique' => 'Tên danh mục đã bị trùng xin chọn tên khác',
-        //         'title.required' => 'Tên danh mục không được để trống',
-        //         'description.required' => 'Mô tả không được để trống',
-        //         'kindofslide.required' => 'Loại slide không được để trống',
-        //         'image.required' => 'Hình ảnh không được để trống',
-        //         'status.required' => 'Status không được để trống',
-        //     ]
-        // );
+
+            'description'=>'required|max:255',
+            'image'=> 'image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=2000,max_height=2000',
+            'status' => 'required',
+            ],
+
+            [
+                'title.unique' => 'Tên danh mục đã bị trùng xin chọn tên khác',
+                'title.required' => 'Tên danh mục không được để trống',
+                'description.required' => 'Mô tả không được để trống',
+       
+
+                'status.required' => 'Status không được để trống',
+            ]
+        );
 
         $slide = Slider::find($id); 
 

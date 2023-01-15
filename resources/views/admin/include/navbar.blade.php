@@ -29,12 +29,18 @@
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="{{route('nick.index')}}">Nick</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{route('thenap.index')}}">Thẻ Nạp</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{route('user.index')}}">User</a>
+              </li>
 
               
               
-              <li class="nav-item">
+              {{-- <li class="nav-item">
                 <a class="nav-link" href="#">Link</a>
-              </li>
+              </li> --}}
         
       
           </div>

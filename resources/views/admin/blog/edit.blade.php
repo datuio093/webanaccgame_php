@@ -34,7 +34,7 @@
                     @csrf
                     <div class="form-group">
                       <label for="">Title</label>
-                      <input type="text" name="title" class="form-control" id="" aria-describedby="emailHelp" value="{{($blog->title)}}">
+                      <input type="text" name="title" onkeyup="ChangeToSlug()" class="form-control" id="" aria-describedby="emailHelp" value="{{($blog->title)}}">
                    
                     </div>
 

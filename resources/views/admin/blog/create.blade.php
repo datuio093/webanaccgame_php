@@ -71,11 +71,11 @@
                           <option value="blogs">Blog</option>
                           <option  value="huongdan">Hưỡng Dẫn</option>
                           <option value="aboutus">About Us</option>
-                     
-                 
-                 
+     
                       </select>
                     </div>
+
+                 
                   
                     <button type="submit" class="btn btn-primary">Submit</button>
                   </form>

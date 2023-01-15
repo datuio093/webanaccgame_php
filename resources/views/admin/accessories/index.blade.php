@@ -7,7 +7,7 @@
 <div class="row justify-content-center ">
     <div class="col-md-8">
         <div class="card">
-            <div class="card-header">Liệt Kê Danh Sách Game</div>
+            <div class="card-header">Liệt Kê Phụ Kiện</div>
        
             <div class="card-body">
                 @if (session('status'))
@@ -16,8 +16,8 @@
                     </div>
                 @endif
 
-                <a href="{{route('accessories.create')}}" class="btn btn-success"> Thêm Danh Mục Game</a>
-                <table class="table table-striped" id="myTable">
+                <a href="{{route('accessories.create')}}" class="btn btn-success"> Thêm Phụ Kiện</a>
+                <table class="table table-striped" id="tablecautoi">
                     <tr>
                       <th>ID</th>
                       <th>Tên Phụ Kiện</th>

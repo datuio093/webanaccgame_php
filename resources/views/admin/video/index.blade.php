@@ -7,7 +7,7 @@
 <div class="row justify-content-center ">
     <div class="col-md-11">
         <div class="card">
-            <div class="card-header">Liệt Kê Danh Sách Game</div>
+            <div class="card-header">Liệt Kê Danh Sách Video</div>
        
             <div class="card-body">
                 @if (session('status'))
@@ -16,7 +16,7 @@
                     </div>
                 @endif
 
-                <a href="{{route('video.create')}}" class="btn btn-success"> Thêm Danh Mục Game</a>
+                <a href="{{route('video.create')}}" class="btn btn-success"> Thêm Danh Mục Video</a>
                 <table class="table table-striped" id="myTable">
                     <tr>
                       <th>ID</th>

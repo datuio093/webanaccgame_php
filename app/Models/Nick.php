@@ -11,7 +11,7 @@ class Nick extends Model
     public $timestamps = false;
     protected $table = 'nicks';
     protected $filltable = [
-        'title', 'attribute' , 'category_id	' , 'price' , 'status' , '	description' , 'image' , 'ms'
+        'title', 'attribute' , 'category_id	' , 'price' , 'status' , '	description' , 'image' , 'ms', 'user_id'
     ];
 
     public function category(){

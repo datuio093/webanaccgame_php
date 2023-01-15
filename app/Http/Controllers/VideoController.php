@@ -78,7 +78,8 @@ class VideoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $video = Video::find($id);
+        return view('admin.video.edit' , compact('video'));
     }
 
     /**
@@ -99,6 +100,7 @@ class VideoController extends Controller
         $video->slug = $data['slug'];
         $video->description  = $data['description'];
         $video->status = $data['status'];
+        $video->link = $data['link'];
         $get_image = $request->image;
         if($get_image) {
         $path_unlink = 'uploads/video/'.$video->image;   // bỏ hình ảnh cũ

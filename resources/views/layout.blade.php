@@ -35,6 +35,9 @@
      <!-- Latest compiled and minified CSS -->
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
       <!-- END GLOBAL MANDATORY STYLES -->
+
+      
+
       <!-- BEGIN: BASE PLUGINS  -->
       <link href="{{asset('fe/css/magnific.css')}}" rel="stylesheet" type="text/css"/>
       <link href="{{asset('fe/css/cubeportfolio.min.css')}}" rel="stylesheet"
@@ -134,7 +137,65 @@
       <link href="{{asset('css/magnific.css')}}" rel="stylesheet" type="text/css"/>
       <!--<script src='https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js'></script><link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css'>-->
       <!-- Google Tag Manager -->
-    
+      <style>
+         .c-layout-header .c-navbar .c-mega-menu > .nav.navbar-nav > li > .c-link{padding:41px 10px 39px 10px}
+         .ui-autocomplete {
+         max-height: 500px;
+         overflow-y: auto;
+         overflow-x: hidden;
+         }
+         .input-group-addon {
+         background-color: #FAFAFA;
+         }
+         .input-group .input-group-btn > .btn, .input-group .input-group-addon {
+         background-color: #FAFAFA;
+         }
+         .modal {
+         text-align: center;
+         }
+         @media  screen and (min-width: 768px) {
+         .modal:before {
+         display: inline-block;
+         vertical-align: middle;
+         content: " ";
+         height: 100%;
+         }
+         }
+         @media (min-width: 992px) and (max-width: 1200px) {
+         .c-layout-header-fixed.c-layout-header-topbar .c-layout-page {
+         margin-top: 245px;
+         }
+         }
+         @media  screen and (max-width: 767px) {
+         .modal-dialog:before {
+         margin-top: 75px;
+         display: inline-block;
+         vertical-align: middle;
+         content: " ";
+         height: 100%;
+         }
+         .modal-dialog {
+         width: 100%;
+         }
+         .modal-content {
+         margin-right: 20px;
+         }
+         }
+         .modal-dialog {
+         display: inline-block;
+         text-align: left;
+         }
+         .mfp-wrap {
+         z-index: 20000 !important;
+         }
+         .c-content-overlay .c-overlay-wrapper {
+         z-index: 6;
+         }
+         .z7 {
+         z-index: 7 !important;
+         }
+      </style>
+      <link href="{{asset('css/magnific.css')}}" rel="stylesheet" type="text/css"/>
      
    </head>
    <body class="c-layout-header-fixed c-layout-header-mobile-fixed c-layout-header-topbar c-layout-header-topbar-collapse">
@@ -164,9 +225,9 @@
       <!-- End Google Tag Manager (noscript) -->
       <!-- BEGIN: LAYOUT/HEADERS/HEADER-1 -->
       <!-- BEGIN: HEADER -->
-      <header class="c-layout-header c-layout-header-4 c-layout-header-default-mobile" data-minimize-offset="80">
-         <div class="c-topbar c-topbar-light">
-            <div class="container">
+      <header class="c-layout-header c-layout-header-4 c-layout-header-default-mobile" data-minimize-offset="80" style="margin-bottom: 500px">
+         <div class="c-topbar c-topbar-light" >
+            <div class="container" >
                <!-- BEGIN: INLINE NAV -->
                <nav class="c-top-menu c-pull-left">
                   <ul class="c-icons c-theme-ul">
@@ -212,14 +273,14 @@
                      <div style="margin: 0px;display: inline-block">
                         <a href="/" class="c-logo"
                            alt="Shop bán nick game, acc game online avatar, đột kích – CF, liên minh huyền thoại lol , ngọc rồng, khí phách anh hùng - kpah giá rẻ, uy tín...">
-                        <img height="35px"
-                           src="/storage/images/HYFiUkwC3Y_1560966469.jpg"
+                        <img height="55px" 
+                           src="{{asset('fe/images/logo.png')}}"
                            alt="" class="c-desktop-logo">
-                        <img height="29px"
-                           src="/storage/images/HYFiUkwC3Y_1560966469.jpg"
+                        <img height="49px"
+                           src="{{asset('fe/images/logo.png')}}"
                            alt="" class="c-desktop-logo-inverse">
-                        <img height="35px"
-                           src="/storage/images/HYFiUkwC3Y_1560966469.jpg"
+                        <img height="55px"
+                           src="{{asset('fe/images/logo.png')}}"
                            alt="" class="c-mobile-logo"> </a>
                      </div>
                      <button class="c-hor-nav-toggler" type="button" data-target=".c-mega-menu">
@@ -261,14 +322,16 @@
                   <nav class="c-mega-menu c-pull-right c-mega-menu-dark c-mega-menu-dark-mobile c-fonts-uppercase c-fonts-bold d-none hidden-xs hidden-sm">
                      <ul  class="nav navbar-nav c-theme-nav">
                         <li class="c-menu-type-classic"><a  rel=""  href="/" class="c-link dropdown-toggle ">Trang chủ</a></li>
-                        <li class="c-menu-type-classic"><a  rel=""  href="/dich-vu" class="c-link dropdown-toggle ">Dịch vụ game</a></li>
-                        <li class="c-menu-type-classic"><a  rel=""  href="/mua-the" class="c-link dropdown-toggle ">Mua thẻ</a></li>
+                        <li class="c-menu-type-classic"><a  rel=""  href="{{route('video_highlight')}}" class="c-link dropdown-toggle ">Video</a></li>
+                        <li class="c-menu-type-classic"><a  rel=""  href="{{route('chuyentien')}}" class="c-link dropdown-toggle ">Chuyển Tiền</a></li>
+                        <li class="c-menu-type-classic"><a  rel=""  href="{{route('muathe')}}" class="c-link dropdown-toggle ">Mua Thẻ</a></li>
+                        {{-- <li class="c-menu-type-classic"><a  rel=""  href="/mua-the" class="c-link dropdown-toggle ">Mua thẻ</a></li> --}}
                         <li class="c-menu-type-classic">
                            <a  rel=""  href="#" class="c-link dropdown-toggle ">Nạp tiền<span class="c-arrow c-toggler"></span></a>
                            <ul id="children-of-41" class="dropdown-menu c-menu-type-classic c-pull-left " >
-                              <li class="c-menu-type-classic"><a  rel="" href="/nap-the" class="">Nạp thẻ c&agrave;o</a></li>
-                              <li class="c-menu-type-classic"><a  rel="" href="/recharge" class="">Nạp ATM tự động</a></li>
-                              <li class="c-menu-type-classic"><a target='_blank' rel="" href="https://nick.vn/blog/huong-dan-nap-tien-tu-dong-bang-atm-vao-nickvn" class="">Hướng dẫn nạp ATM tự động</a></li>
+                              <li class="c-menu-type-classic"><a  rel="" href="{{route('napthe')}}" class="">Nạp thẻ c&agrave;o</a></li>
+                              {{-- <li class="c-menu-type-classic"><a  rel="" href="/recharge" class="">Nạp ATM tự động</a></li>
+                              <li class="c-menu-type-classic"><a target='_blank' rel="" href="https://nick.vn/blog/huong-dan-nap-tien-tu-dong-bang-atm-vao-nickvn" class="">Hướng dẫn nạp ATM tự động</a></li> --}}
                            </ul>
                         </li>
                         <li class="c-menu-type-classic">
@@ -287,12 +350,32 @@
                            </ul>
                         
                         </li>
+                        @guest
                         <li><a href="/login" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-dark c-btn-circle c-btn-uppercase c-btn-sbold">
-                           <i class="icon-user"></i> Đăng nhập</a>
+                            Đăng nhập</a>
                         </li>
                         <li><a href="/register" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-dark c-btn-circle c-btn-uppercase c-btn-sbold">
-                           <i class="icon-key icons"></i> Đăng ký</a>
+                           Đăng ký</a>
                         </li>
+                        @else
+                        <li><a href="{{ route('profile') }}" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-dark c-btn-circle c-btn-uppercase c-btn-sbold">
+                            {{Auth::user()->name}} {{number_format(Auth::user()->money,0,',','.')}}đ </a>
+                        </li>
+                        {{-- <li><a href="" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-dark c-btn-circle c-btn-uppercase c-btn-sbold">
+                           <i class="icon-key icons"></i> Logout </a>
+                        </li> --}}
+                        <li>
+                           <a class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-dark c-btn-circle c-btn-uppercase c-btn-sbol" href="{{ route('logout') }}"
+                              onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                            <i class="bi bi-power"></i>     Logout </i>
+                           </a>
+
+                           <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                               @csrf
+                           </form>
+                        </li>
+                        @endguest
                      </ul>
                   </nav>
                   <nav class="menu-main-mobile c-mega-menu c-pull-right c-mega-menu-dark c-mega-menu-dark-mobile c-fonts-uppercase c-fonts-bold hidden-md hidden-lg">
@@ -301,11 +384,10 @@
                         <li class="c-menu-type-classic"><a  rel=""  href="/dich-vu" class="c-link dropdown-toggle ">Dịch vụ game</a></li>
                         <li class="c-menu-type-classic"><a  rel=""  href="/mua-the" class="c-link dropdown-toggle ">Mua thẻ</a></li>
                         <li class="c-menu-type-classic">
-                           <a  rel=""  href="#" class="c-link dropdown-toggle ">Nạp tiền<span class="c-arrow c-toggler"></span></a>
+                           <a  href="" class="c-link dropdown-toggle ">Nạp tiền<span class="c-arrow c-toggler"></span></a>
                            <ul id="children-of-41" class="dropdown-menu c-menu-type-classic c-pull-left " >
-                              <li class="c-menu-type-classic"><a  rel="" href="/nap-the" class="">Nạp thẻ c&agrave;o</a></li>
-                              <li class="c-menu-type-classic"><a  rel="" href="/recharge" class="">Nạp ATM tự động</a></li>
-                              <li class="c-menu-type-classic"><a target='_blank' rel="" href="https://nick.vn/blog/huong-dan-nap-tien-tu-dong-bang-atm-vao-nickvn" class="">Hướng dẫn nạp ATM tự động</a></li>
+                              <li class="c-menu-type-classic"><a  rel="" href="{{route('napthe')}}" class="">Nạp thẻ c&agrave;o</a></li>
+                              
                            </ul>
                         </li>
                         <li class="c-menu-type-classic">
@@ -341,9 +423,9 @@
       <!-- END: HEADER -->
       <!-- END: LAYOUT/HEADERS/HEADER-1 -->
       <!-- BEGIN: PAGE CONTAINER -->
-      <div class="c-layout-page" style="margin-top: 150px">
+
+      {{-- <div class="c-layout-page" style="margin-top: 150px">
          <!-- BEGIN: PAGE CONTENT -->
-      
          <div class="c-content-box">
             <div id="slider" class="owl-theme section section-cate slideshow_full_width ">
                <div id="slide_banner" class="owl-carousel">
@@ -357,7 +439,7 @@
             
                </div>
             </div>
-         </div>
+         </div> --}}
         
          @yield('content')
         <!-- DICH VU -->
@@ -366,7 +448,7 @@
 
          <div class="modal fade" id="noticeModal" role="dialog" style="display: none;" aria-hidden="true">
             <div class="modal-dialog" role="document">
-               <div class="loader" style="text-align: center"><img src="/assets/frontend/images/loader.gif"
+               <div class="loader" style="text-align: center"><img src=""
                   style="width: 50px;height: 50px;display: none"></div>
                <div class="modal-content">
                </div>
@@ -375,7 +457,7 @@
       </div>
       <div class="modal fade" id="LoadModal" role="dialog" style="display: none;" aria-hidden="true">
          <div class="modal-dialog" role="document">
-            <div class="loader" style="text-align: center"><img src="/assets/frontend/images/loader.gif"
+            <div class="loader" style="text-align: center"><img src=""
                style="width: 50px;height: 50px;display: none"></div>
             <div class="modal-content">
             </div>
@@ -388,12 +470,13 @@
                      e.preventDefault();
                      e.preventDefault();
                      var curModal = $('#LoadModal');
-                     curModal.find('.modal-content').html("<div class=\"loader\" style=\"text-align: center\"><img src=\"/assets/frontend/images/loader.gif\" style=\"width: 50px;height: 50px;\"></div>");
+                     curModal.find('.modal-content').html("<div class=\"loader\" style=\"text-align: center\"><img  style=\"width: 50px;height: 50px;\"></div>");
                      curModal.modal('show').find('.modal-content').load($(elem).attr('rel'));
                  });
              });
          });
       </script>
+         
       <!-- END: PAGE CONTAINER -->
       <a name="footer"></a>
       <footer class="c-layout-footer c-layout-footer-3 c-bg-dark">
@@ -419,14 +502,14 @@
                            <li><a href="/tuyen-dai-ly-cung-cap-nick-tai-nickvn">Tuyển Đại Lý cung cấp nick tại Nick.vn</a></li>
                            <li><a href="/lien-he-gop-y"> Liên hệ/góp ý</a></li>
                            </ul> -->
-                        <p><span style="color:#ffffff"><span style="font-size:22px"><strong>&nbsp;</strong></span></span><span style="color:#16a085"><span style="font-size:22px"><strong>NICK.VN</strong></span></span>&nbsp; &nbsp;<a href="http://www.dmca.com/Protection/Status.aspx?ID=6766daa6-8986-40c5-b282-a9c9e6a883de&amp;refurl=https://nick.vn/" target="_blank"><img alt="DMCA.com Protection Status" src="https://images.dmca.com/Badges/_dmca_premi_badge_1.png?ID=6766daa6-8986-40c5-b282-a9c9e6a883de" /></a></p>
+                        <p><span style="color:#ffffff"><span style="font-size:22px"><strong>&nbsp;</strong></span></span><span style="color:#16a085"><span style="font-size:22px"><strong>NICK.VN</strong></span></span>&nbsp; &nbsp;<a href="http://www.dmca.com/Protection/Status.aspx?ID=6766daa6-8986-40c5-b282-a9c9e6a883de&amp;refurl=https://nick.vn/" target="_blank"><img alt="DMCA.com Protection Status" src="{{asset('fe/images/logo.png')}}" width="100px" height="100px" /></a></p>
                         <p><span style="font-size:14px"><span style="color:#ffffff">Chuy&ecirc;n mua b&aacute;n nick&nbsp;all game, </span><a href="https://napgamegiare.net/"><span style="color:#ffffff">nạp game gi&aacute; rẻ</span></a><span style="color:#ffffff">,&nbsp;an to&agrave;n,&nbsp;tin cậy, nhanh ch&oacute;ng. Giao dịch tự động 24/24</span></span></p>
                         <ul>
-                           <li><strong><span style="font-size:14px"><a href="/gioi-thieu" target="_blank"><span style="color:#ffffff">Giới thiệu</span></a></span></strong></li>
-                           <li><strong><span style="font-size:14px"><a href="/huong-dan-mua-tai-khoan" target="_blank"><span style="color:#ffffff">Hướng Dẫn Mua T&agrave;i Khoản</span></a></span></strong></li>
-                           <li><strong><span style="font-size:14px"><a href="/huong-dan-nick-mua-tra-gop" target="_blank"><span style="color:#ffffff">Hướng Dẫn Mua Nick Trả G&oacute;p</span></a></span></strong></li>
-                           <li><strong><span style="font-size:14px"><a href="/tuyen-dai-ly-cung-cap-nick-tai-nickvn" target="_blank"><span style="color:#ffffff">Tuyển Đại L&yacute; cung cấp nick tại Nick.vn</span></a></span></strong></li>
-                           <li><strong><span style="font-size:14px"><a href="/lien-he-gop-y" target="_blank"><span style="color:#ffffff">Li&ecirc;n hệ</span></a></span></strong></li>
+                           <li><strong><span style="font-size:14px"><a href="" target="_blank"><span style="color:#ffffff">Giới thiệu</span></a></span></strong></li>
+                           <li><strong><span style="font-size:14px"><a href="" target="_blank"><span style="color:#ffffff">Hướng Dẫn Mua T&agrave;i Khoản</span></a></span></strong></li>
+                           <li><strong><span style="font-size:14px"><a href="" target="_blank"><span style="color:#ffffff">Hướng Dẫn Mua Nick Trả G&oacute;p</span></a></span></strong></li>
+                           <li><strong><span style="font-size:14px"><a href="" target="_blank"><span style="color:#ffffff">Tuyển Đại L&yacute; cung cấp nick tại Nick.vn</span></a></span></strong></li>
+                           <li><strong><span style="font-size:14px"><a href="" target="_blank"><span style="color:#ffffff">Li&ecirc;n hệ</span></a></span></strong></li>
                            <li><strong><a href="https://gamecuoi.com/" target="_blank"><span style="color:#ffffff"><span style="font-size:14px">Tin tức&nbsp;game</span></span></a></strong></li>
                         </ul>
                      </div>
@@ -534,6 +617,7 @@
       <script src="{{asset('fe/js/js.cookie.js')}}" type="text/javascript"></script>
       <!-- END: LAYOUT PLUGINS -->
       <!-- BEGIN: THEME SCRIPTS -->
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
       <script src=" {{asset('fe/js/components.js')}}" type="text/javascript"></script>
       <script src=" {{asset('fe/js/app.js')}}" type="text/javascript"></script>
       <script src=" {{asset('fe/js/bootbox.min.js')}}" type="text/javascript"></script>

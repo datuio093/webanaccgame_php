@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
 
-<div class="c-layout-page">
+<div class="c-layout-page" style="margin-top: 150px">
     <!-- BEGIN: PAGE CONTENT -->
     <div class="c-content-box c-size-md c-bg-white">
        <div class="container">

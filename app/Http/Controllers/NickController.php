@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Nick;
 use App\Models\Category;
 use App\Models\Accessories;
+use Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Support\Facades\Crypt;
 class NickController extends Controller
 {
     /**
@@ -16,6 +18,7 @@ class NickController extends Controller
     public function index()
     {
         $nicks = Nick::with('category')->orderBy('id','desc')->paginate(10);
+
         return view('admin.nick.index', compact('nicks'));
 
     }
@@ -40,23 +43,24 @@ class NickController extends Controller
     public function store(Request $request)
     {
 
-        $data = $request->all();
-        // $data = $request->validate(
-        //     [
-        //     'title' => 'required|unique:nicks|max:255',
-        //     'category_id' => 'required',
-        //     'status' => 'required',
-        //     'description' => 'required',
-        //     'price' => 'required',
-        //     ],
+        // $data = $request->all();
+        $data = $request->validate(
+            [
+            'title' => 'required|max:255',
+            'category_id' => 'required',
+            'status' => 'required',
+            'description' => 'required',
+            'price' => 'bail|required|numeric|gt:0',
+            'attribute' => 'required',
+            'taikhoan' => 'required',
+            'matkhau' => 'required',
+            'name_attribute' => 'required',
+            ],
 
-        //     [
-        //         'title.unique' => 'Tên danh mục đã bị trùng xin chọn tên khác',
-        //         'title.required' => 'Tên danh mục không được để trống',
-        //         'category_id.required' => 'category_id không được để trống',
-        //         'status.required' => 'Status không được để trống',
-        //     ]
-        // );
+            [
+        
+            ]
+        );
         $attribute = [];
         foreach($data['attribute'] as $key => $attri){
             foreach($data['name_attribute'] as $key2 => $name_attri){
@@ -74,6 +78,8 @@ class NickController extends Controller
         $nicks->description = $data['description'];
         $nicks->price = $data['price'];
         $nicks->category_id = $data['category_id'];
+        $nicks->taikhoan = $data['taikhoan'];
+        $nicks->matkhau =Crypt::encryptString( $data['matkhau'] );
 
 
         $get_image = $request->image;
@@ -130,6 +136,15 @@ class NickController extends Controller
         return view('admin.nick.edit', compact('nick','category'));
     }
 
+    // public function buy($id)
+    // {
+    //     $nick = Nick::find($id);
+    //     $nicks->user_id = 1222;
+    //     $nicks->save();
+      
+    //     return view('admin.nick.edit')
+    // }
+
     /**
      * Update the specified resource in storage.
      *
@@ -139,34 +154,45 @@ class NickController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $request->all();
-        // $data = $request->validate(
-        //     [
-        //     'title' => 'required|unique:nicks|max:255',
-        //     'category_id' => 'required',
-        //     'status' => 'required',
-        //     'description' => 'required',
-        //     'price' => 'required',
-        //     ],
 
-        //     [
-        //         'title.unique' => 'Tên danh mục đã bị trùng xin chọn tên khác',
-        //         'title.required' => 'Tên danh mục không được để trống',
-        //         'category_id.required' => 'category_id không được để trống',
-        //         'status.required' => 'Status không được để trống',
-        //     ]
-        // );
+        
+
+
+        // $data = $request->all();
+
+
+        $data = $request->validate(
+            [
+            'title' => 'max:255',
+            'category_id' => '',
+            'status' => '',
+            'description' => '',
+            'price' => 'bail|required|numeric|gt:0',
+            'attribute' => '',
+            'taikhoan' => '',
+            'matkhau' => '',
+            'name_attribute' => '',
+            ],
+
+            [
+                
+            ]
+        );
    
       
         $nicks = Nick::find($id); 
         $nicks->title = $data['title'];
         $nicks->ms =  $nicks->ms;
-        // $nicks->attribute = json_encode($attribute, JSON_UNESCAPED_UNICODE); 
+
         $nicks->status = $data['status'];
         $nicks->description = $data['description'];
         $nicks->price = $data['price'];
         $nicks->category_id = $data['category_id'];
         $nicks->attribute = $data['attribute'];
+        $nicks->taikhoan = $data['taikhoan'];
+        $nicks->matkhau =Crypt::encryptString( $data['matkhau'] );
+        
+        // $nicks->user_id = $data['user_id'];
 
 
         $get_image = $request->image;

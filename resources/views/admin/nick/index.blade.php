@@ -7,7 +7,7 @@
 <div class="row justify-content-center ">
     <div class="col-md-10">
         <div class="card">
-            <div class="card-header">Liệt Kê Danh Sách Game</div>
+            <div class="card-header">Liệt Kê Nick Game</div>
        
             <div class="card-body">
                 @if (session('status'))
@@ -16,12 +16,14 @@
                     </div>
                 @endif
 
-                <a href="{{route('nick.create')}}" class="btn btn-success"> Thêm Danh Mục Game</a>
+                <a href="{{route('nick.create')}}" class="btn btn-success"> Thêm Nick Game</a>
                 <table class="table table-striped" id="myTable">
                     <tr>
                       <th>ID</th>
                       <th>Thư Viện Ảnh</th>
                       <th>Tên Nick</th>
+                      <th>Tài Khoản</th>
+                      <th>Mật Khẩu</th>
                       <th>Mã Số</th>
                       <th>Mô Tả</th>
                       <th>Hiển Thị</th>
@@ -37,8 +39,11 @@
                         <td>{{$key}}</td>
                         <td>  <a href="{{route('gallery.edit', [$blg->id])}}" class="btn btn-success btn-sm">Thêm Thư Viện Ảnh </a> </td>
                         <td style="max-width: 100px">{{$blg->title}}</td>
+                        <td style="max-width: 100px">{{$blg->taikhoan}}</td>
+                        <td style="max-width: 100px">{{Crypt::decryptString($blg->matkhau)}}</td>
                         <td style="max-width: 100px">{{$blg->ms}}</td>
                         <td style="max-width: 400px">{!!$blg->description!!}</td>
+                        
 
   
             
